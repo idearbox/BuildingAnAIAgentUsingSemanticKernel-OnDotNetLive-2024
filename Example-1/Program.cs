@@ -1,12 +1,12 @@
 ﻿using Microsoft.SemanticKernel;
 
 
-var endpoint = Environment.GetEnvironmentVariable("OPENAI_ENDPOINT");
-var key = Environment.GetEnvironmentVariable("OPENAI_KEY");
+var endpoint = "https://sample-lab-02.openai.azure.com";//Environment.GetEnvironmentVariable("OPENAI_ENDPOINT");
+var key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY1");
 
 var builder = Kernel.CreateBuilder();
 builder.AddAzureOpenAIChatCompletion(
-         "gpt-4",   // Azure OpenAI Deployment Name
+         "gpt-4o",   // Azure OpenAI Deployment Name
          endpoint,  // Azure OpenAI Endpoint
          key);      // Azure OpenAI Key
 var kernel = builder.Build();
