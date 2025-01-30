@@ -2,12 +2,13 @@
 using Microsoft.SemanticKernel.ChatCompletion;
 
 
-var endpoint = Environment.GetEnvironmentVariable("OPENAI_ENDPOINT");
-var key = Environment.GetEnvironmentVariable("OPENAI_KEY");
+var model = Environment.GetEnvironmentVariable("AZURE_OPENAI_MODEL_NAME1");
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT1");
+var key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY1");
 
 var builder = Kernel.CreateBuilder();
 builder.AddAzureOpenAIChatCompletion(
-         "gpt-4",   // Azure OpenAI Deployment Name
+         model,   // Azure OpenAI Deployment Name
          endpoint,  // Azure OpenAI Endpoint
          key);      // Azure OpenAI Key
 var kernel = builder.Build();
