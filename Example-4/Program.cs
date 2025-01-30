@@ -23,6 +23,7 @@ int age = 10;
 
 while (true)
 {
+    Console.WriteLine();
     Console.ForegroundColor = ConsoleColor.Green;
     Console.Write("User > ");
     Console.ForegroundColor = ConsoleColor.White;
