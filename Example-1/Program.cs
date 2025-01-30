@@ -12,20 +12,19 @@ builder.AddAzureOpenAIChatCompletion(
          key);      // Azure OpenAI Key
 var kernel = builder.Build();
 
-string _line = new string('-', 100);
 // Semantic Kernel를 활용한 prompt 실행
 //string request = "LOL(롤) 게임의 챔피언 Mel(멜)에 대해서 아는 정보 있는가?";
 //string request = "LOL(롤) 게임의 챔피언 나서스에 대해서 아는 정보 있는가? 간략히 3줄로 요약해줘";
 string request = "LOL(롤) 게임의 챔피언 정보를 알고싶어";
 string prompt = $"이 요청의 의도는 무엇입니까? {request}";
-Console.WriteLine($"1..{_line}"); 
+Console.WriteLine($"1..----------------------------------------------------------------------"); 
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
 // 프롬프트 엔지니어링으로 프롬프트 개선
 prompt = @$"이 요청의 의도는 무엇입니까? {request}
             다음 중에서 선택할 수 있습니다: GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus.";
-Console.WriteLine($"2..{_line}");
+Console.WriteLine($"2..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
@@ -34,7 +33,7 @@ prompt = @$"Instructions: 이 요청의 의도는 무엇입니까?
             Choices     : GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus
             User Input  : {request}
             Intent      : ";
-Console.WriteLine($"3..{_line}");
+Console.WriteLine($"3..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
@@ -66,7 +65,7 @@ prompt = $$"""
 
          ## Intent
          """;
-Console.WriteLine($"4..{_line}");
+Console.WriteLine($"4..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
@@ -82,7 +81,7 @@ prompt = @$"지침          : 이 요청의 의도는 무엇입니까?
 
             사용자 입력   : {request}
             의도: ";
-Console.WriteLine($"5..{_line}");
+Console.WriteLine($"5..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
@@ -101,7 +100,7 @@ prompt = @$"지침          : 이 요청의 의도는 무엇입니까?
             사용자 입력   : {request}
             의도: ";
 
-Console.WriteLine($"6..{_line}");
+Console.WriteLine($"6..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
