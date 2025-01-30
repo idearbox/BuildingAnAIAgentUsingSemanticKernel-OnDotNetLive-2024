@@ -13,28 +13,39 @@ var kernel = builder.Build();
 
 
 // Running your first prompt with Semantic Kernel
-string request = "I want to know how much power my solar panels are providing.";
-string prompt = $"What is the intent of this request? {request}";
+string request = "내 태양광 패널이 얼마나 많은 전력을 제공하는지 알고 싶습니다.";
+string prompt = $"이 요청의 의도는 무엇입니까? {request}";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine("1..---------------------");
 Console.WriteLine();
 
 // Improving the prompt with prompt engineering
-prompt = @$"What is the intent of this request? {request}
-You can choose between GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.";
+prompt = @$"이 요청의 의도는 무엇입니까? {request}
+다음 중에서 선택할 수 있습니다: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine("2..---------------------");
 Console.WriteLine();
 
 // Add structure to the output with formatting
-prompt = @$"Instructions: What is the intent of this request?
-Choices: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
-User Input: {request}
-Intent: ";
+prompt = @$"지침: 이 요청의 의도는 무엇입니까?
+선택지: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
+사용자 입력: {request}
+의도: ";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine("3..---------------------");
 Console.WriteLine();
 
+prompt = $$"""
+         ## 지침
+         요청의 의도를 다음 형식으로 제공하십시오:
+
+         
+## 선택지
+다음 의도 중에서 선택할 수 있습니다:
+## 사용자 입력
+사용자 입력은 다음과 같습니다:
+## 의도
+""";
 prompt = $$"""
          ## Instructions
          Provide the intent of the request using the following format:
@@ -68,35 +79,35 @@ Console.WriteLine("4..---------------------");
 Console.WriteLine();
 
 // Provide examples with few-shot prompting
-prompt = @$"Instructions: What is the intent of this request?
-Choices: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
+prompt = @$"지침: 이 요청의 의도는 무엇입니까?
+선택지: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
 
-User Input: How much energy did my solar panels provide today?
-Intent: GetSolarEnergyToday
+사용자 입력: 내 태양광 패널이 오늘 얼마나 많은 에너지를 제공했나요?
+의도: GetSolarEnergyToday
 
-User Input: Can you start charging my car?
-Intent: StartChargingCar
+사용자 입력: 내 차를 충전할 수 있나요?
+의도: StartChargingCar
 
-User Input: {request}
-Intent: ";
+사용자 입력: {request}
+의도: ";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine("5..---------------------");
 Console.WriteLine();
 
 // Tell the AI what to do to avoid doing something wrong
 prompt = $"""
-         Instructions: What is the intent of this request?
-         If you don't know the intent, don't guess; instead respond with "Unknown".
-         Choices: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
+         지침: 이 요청의 의도는 무엇입니까?
+         의도를 모르면 추측하지 말고 대신 "Unknown"이라고 응답하세요.
+         선택지: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
 
-         User Input: How much energy did my solar panels provide today?
-         Intent: GetSolarEnergyToday
+         사용자 입력: 내 태양광 패널이 오늘 얼마나 많은 에너지를 제공했나요?
+         의도: GetSolarEnergyToday
 
-         User Input: Can you start charging my car?
-         Intent: StartChargingCar
+         사용자 입력: 내 차를 충전할 수 있나요?
+         의도: StartChargingCar
 
-         User Input: {request}
-         Intent: 
+         사용자 입력: {request}
+         의도: 
          """;
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine("6..---------------------");
