@@ -16,15 +16,15 @@ var kernel = builder.Build();
 string request = "I want to know how much power my solar panels are providing.";
 string prompt = $"What is the intent of this request? {request}";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("---------------------");
-
+Console.WriteLine("1..---------------------");
+Console.WriteLine();
 
 // Improving the prompt with prompt engineering
 prompt = @$"What is the intent of this request? {request}
 You can choose between GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("---------------------");
-
+Console.WriteLine("2..---------------------");
+Console.WriteLine();
 
 // Add structure to the output with formatting
 prompt = @$"Instructions: What is the intent of this request?
@@ -32,7 +32,8 @@ Choices: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartCha
 User Input: {request}
 Intent: ";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("---------------------");
+Console.WriteLine("3..---------------------");
+Console.WriteLine();
 
 prompt = $$"""
          ## Instructions
@@ -63,8 +64,8 @@ prompt = $$"""
          ## Intent
          """;
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("---------------------");
-
+Console.WriteLine("4..---------------------");
+Console.WriteLine();
 
 // Provide examples with few-shot prompting
 prompt = @$"Instructions: What is the intent of this request?
@@ -79,8 +80,8 @@ Intent: StartChargingCar
 User Input: {request}
 Intent: ";
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("---------------------");
-
+Console.WriteLine("5..---------------------");
+Console.WriteLine();
 
 // Tell the AI what to do to avoid doing something wrong
 prompt = $"""
@@ -98,7 +99,7 @@ prompt = $"""
          Intent: 
          """;
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("---------------------");
-
+Console.WriteLine("6..---------------------");
+Console.WriteLine();
 
 Console.ReadKey();
