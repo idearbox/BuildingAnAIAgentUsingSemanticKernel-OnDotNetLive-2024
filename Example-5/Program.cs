@@ -36,6 +36,7 @@ while (true)
     history.AddUserMessage(request!);
 
     var result = chatCompletionService.GetStreamingChatMessageContentsAsync(history, executionSettings, kernel);
+    //var result = chatCompletionService.GetStreamingChatMessageContentsAsync(history, null, kernel);
 
     string fullMessage = "";
     Console.ForegroundColor = ConsoleColor.Cyan;
