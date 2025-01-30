@@ -19,6 +19,7 @@ var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
 while (true)
 {
+    Console.WriteLine();
     Console.ForegroundColor = ConsoleColor.Green;
     Console.Write("User > ");
     Console.ForegroundColor = ConsoleColor.White;
