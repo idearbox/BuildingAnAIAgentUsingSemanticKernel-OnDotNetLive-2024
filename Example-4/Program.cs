@@ -17,7 +17,7 @@ ChatHistory history = [];
 
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
-history.AddSystemMessage("You should answer as a 10-year old child.");
+history.AddSystemMessage("너는 10살 아이처럼 대답해야 해.");
 
 int age = 10;
 
@@ -48,5 +48,5 @@ while (true)
 
     age -= 2;
 
-    history.AddSystemMessage($"You should answer as a {age}-year old child and tell us your age after every response.");
+    history.AddSystemMessage($"너는 {age}살 아이처럼 대답하고, 매번 응답 후에 너의 나이를 말해야 해.");
 }
