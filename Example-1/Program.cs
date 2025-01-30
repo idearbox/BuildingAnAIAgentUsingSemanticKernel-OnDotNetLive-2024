@@ -21,6 +21,7 @@ Console.WriteLine($"1..---------------------------------------------------------
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
+
 // 프롬프트 엔지니어링으로 프롬프트 개선
 prompt = @$"이 요청의 의도는 무엇입니까? {request}
             다음 중에서 선택할 수 있습니다: GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus.";
@@ -28,14 +29,16 @@ Console.WriteLine($"2..---------------------------------------------------------
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
+
 // output 에 특정 formatting 적용
 prompt = @$"Instructions: 이 요청의 의도는 무엇입니까?
-            Choices     : GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus
+            가능한 답변  : GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus
             User Input  : {request}
             Intent      : ";
 Console.WriteLine($"3..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
+
 
 prompt = $$"""
          ## Instructions
@@ -68,6 +71,7 @@ prompt = $$"""
 Console.WriteLine($"4..----------------------------------------------------------------------");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
+Console.ReadLine();
 
 // Provide examples with few-shot prompting
 prompt = @$"지침          : 이 요청의 의도는 무엇입니까?
@@ -85,7 +89,6 @@ Console.WriteLine($"5..---------------------------------------------------------
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
 Console.WriteLine();
 
-request=Console.ReadLine();
 // Tell the AI what to do to avoid doing something wrong
 prompt = @$"지침          : 이 요청의 의도는 무엇입니까?
                             의도를 정확히 모르면 추측하지 말고 대신 ""Unknown""이라고 응답하세요.
