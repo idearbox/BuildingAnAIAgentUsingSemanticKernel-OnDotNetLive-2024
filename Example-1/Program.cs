@@ -1,54 +1,46 @@
 ﻿using Microsoft.SemanticKernel;
 
 
-var endpoint = "https://sample-lab-02.openai.azure.com";//Environment.GetEnvironmentVariable("OPENAI_ENDPOINT");
+var model = Environment.GetEnvironmentVariable("AZURE_OPENAI_MODEL_NAME1");
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT1");
 var key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY1");
 
 var builder = Kernel.CreateBuilder();
 builder.AddAzureOpenAIChatCompletion(
-         "gpt-4o",   // Azure OpenAI Deployment Name
+         model,   // Azure OpenAI Deployment Name
          endpoint,  // Azure OpenAI Endpoint
          key);      // Azure OpenAI Key
 var kernel = builder.Build();
 
-
-// Running your first prompt with Semantic Kernel
-string request = "내 태양광 패널이 얼마나 많은 전력을 제공하는지 알고 싶습니다.";
+string _line = new string('-', 100);
+// Semantic Kernel를 활용한 prompt 실행
+//string request = "LOL(롤) 게임의 챔피언 Mel(멜)에 대해서 아는 정보 있는가?";
+//string request = "LOL(롤) 게임의 챔피언 나서스에 대해서 아는 정보 있는가? 간략히 3줄로 요약해줘";
+string request = "LOL(롤) 게임의 챔피언 정보를 알고싶어";
 string prompt = $"이 요청의 의도는 무엇입니까? {request}";
+Console.WriteLine($"1..{_line}"); 
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("1..---------------------");
 Console.WriteLine();
 
-// Improving the prompt with prompt engineering
+// 프롬프트 엔지니어링으로 프롬프트 개선
 prompt = @$"이 요청의 의도는 무엇입니까? {request}
-다음 중에서 선택할 수 있습니다: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.";
+            다음 중에서 선택할 수 있습니다: GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus.";
+Console.WriteLine($"2..{_line}");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("2..---------------------");
 Console.WriteLine();
 
-// Add structure to the output with formatting
-prompt = @$"지침: 이 요청의 의도는 무엇입니까?
-선택지: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
-사용자 입력: {request}
-의도: ";
+// output 에 특정 formatting 적용
+prompt = @$"Instructions: 이 요청의 의도는 무엇입니까?
+            Choices     : GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus
+            User Input  : {request}
+            Intent      : ";
+Console.WriteLine($"3..{_line}");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("3..---------------------");
 Console.WriteLine();
 
-prompt = $$"""
-         ## 지침
-         요청의 의도를 다음 형식으로 제공하십시오:
-
-         
-## 선택지
-다음 의도 중에서 선택할 수 있습니다:
-## 사용자 입력
-사용자 입력은 다음과 같습니다:
-## 의도
-""";
 prompt = $$"""
          ## Instructions
-         Provide the intent of the request using the following format:
+         요청의 의도를 다음 형식으로 제공하십시오:
 
          ```json
          {
@@ -57,14 +49,14 @@ prompt = $$"""
          ```
 
          ## Choices
-         You can choose between the following intents:
+         다음 중에서 선택할 수 있습니다:
 
          ```json
-         ["GetSolarEnergyToday", "GetSolarPower", "GetSolarBatteryPercentage", "StartChargingCar"]
+         ["GetChamInfo", "GetTodayCham", "GetCurrentUserCount", "GetServiceStatus"]
          ```
 
          ## User Input
-         The user input is:
+         사용자 요청:
 
          ```json
          {
@@ -74,43 +66,43 @@ prompt = $$"""
 
          ## Intent
          """;
+Console.WriteLine($"4..{_line}");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("4..---------------------");
 Console.WriteLine();
 
 // Provide examples with few-shot prompting
-prompt = @$"지침: 이 요청의 의도는 무엇입니까?
-선택지: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
+prompt = @$"지침          : 이 요청의 의도는 무엇입니까?
+            선택지        : GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus
+            
+            사용자 입력   : 오늘의 추전 챔피언은 누구인가요?
+            의도          : GetTodayCham
+            
+            사용자 입력   : 현재 서비스 상태를 알려주세요.
+            의도          : GetServiceStatus
 
-사용자 입력: 내 태양광 패널이 오늘 얼마나 많은 에너지를 제공했나요?
-의도: GetSolarEnergyToday
-
-사용자 입력: 내 차를 충전할 수 있나요?
-의도: StartChargingCar
-
-사용자 입력: {request}
-의도: ";
+            사용자 입력   : {request}
+            의도: ";
+Console.WriteLine($"5..{_line}");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("5..---------------------");
 Console.WriteLine();
 
+request=Console.ReadLine();
 // Tell the AI what to do to avoid doing something wrong
-prompt = $"""
-         지침: 이 요청의 의도는 무엇입니까?
-         의도를 모르면 추측하지 말고 대신 "Unknown"이라고 응답하세요.
-         선택지: GetSolarEnergyToday, GetSolarPower, GetSolarBatteryPercentage, StartChargingCar.
+prompt = @$"지침          : 이 요청의 의도는 무엇입니까?
+                            의도를 정확히 모르면 추측하지 말고 대신 ""Unknown""이라고 응답하세요.
+            선택지        : GetChamInfo, GetTodayCham, GetCurrentUserCount, GetServiceStatus
+            
+            사용자 입력   : 오늘의 추전 챔피언은 누구인가요?
+            의도          : GetTodayCham
+            
+            사용자 입력   : 현재 서비스 상태를 알려주세요.
+            의도          : GetServiceStatus
 
-         사용자 입력: 내 태양광 패널이 오늘 얼마나 많은 에너지를 제공했나요?
-         의도: GetSolarEnergyToday
+            사용자 입력   : {request}
+            의도: ";
 
-         사용자 입력: 내 차를 충전할 수 있나요?
-         의도: StartChargingCar
-
-         사용자 입력: {request}
-         의도: 
-         """;
+Console.WriteLine($"6..{_line}");
 Console.WriteLine(await kernel.InvokePromptAsync(prompt));
-Console.WriteLine("6..---------------------");
 Console.WriteLine();
 
 Console.ReadKey();

@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Prompt", "Example-1\SemanticKernel.Prompt.csproj", "{F04062FC-40AD-449E-9F4F-96997602644B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Chat", "Example-2\SemanticKernel.Chat.csproj", "{846870F3-62BB-4FF4-86FE-9181515E4B94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example-1", "Example-1", "{596E1BBE-8475-4DF4-8972-E0EE1A5E514D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example-2", "Example-2", "{2155FF8F-348C-4E2A-ACBC-D2ED9CAFFABB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example-3", "Example-3", "{45294111-DAA0-4271-95F9-1C55ED295AAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example-4", "Example-4", "{D222BB0F-28BF-463E-8F86-835BC601F439}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example-5", "Example-5", "{AE438B59-88FB-4A14-83A3-68404A6118DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.ChatHistory", "Example-3\SemanticKernel.ChatHistory.csproj", "{17D50A3C-EFB5-4D4C-817D-98486BDAE25C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.SystemMessage", "Example-4\SemanticKernel.SystemMessage.csproj", "{8E1D5580-1410-44B3-9221-96B381DF9722}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.NativeFunction", "Example-5\SemanticKernel.NativeFunction.csproj", "{75039EAD-0A4A-4E7C-87B1-695FCE9097FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F04062FC-40AD-449E-9F4F-96997602644B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04062FC-40AD-449E-9F4F-96997602644B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04062FC-40AD-449E-9F4F-96997602644B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04062FC-40AD-449E-9F4F-96997602644B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846870F3-62BB-4FF4-86FE-9181515E4B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846870F3-62BB-4FF4-86FE-9181515E4B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846870F3-62BB-4FF4-86FE-9181515E4B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846870F3-62BB-4FF4-86FE-9181515E4B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D50A3C-EFB5-4D4C-817D-98486BDAE25C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D50A3C-EFB5-4D4C-817D-98486BDAE25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D50A3C-EFB5-4D4C-817D-98486BDAE25C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D50A3C-EFB5-4D4C-817D-98486BDAE25C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E1D5580-1410-44B3-9221-96B381DF9722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1D5580-1410-44B3-9221-96B381DF9722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E1D5580-1410-44B3-9221-96B381DF9722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1D5580-1410-44B3-9221-96B381DF9722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75039EAD-0A4A-4E7C-87B1-695FCE9097FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75039EAD-0A4A-4E7C-87B1-695FCE9097FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75039EAD-0A4A-4E7C-87B1-695FCE9097FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75039EAD-0A4A-4E7C-87B1-695FCE9097FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F04062FC-40AD-449E-9F4F-96997602644B} = {596E1BBE-8475-4DF4-8972-E0EE1A5E514D}
+		{846870F3-62BB-4FF4-86FE-9181515E4B94} = {2155FF8F-348C-4E2A-ACBC-D2ED9CAFFABB}
+		{17D50A3C-EFB5-4D4C-817D-98486BDAE25C} = {45294111-DAA0-4271-95F9-1C55ED295AAF}
+		{8E1D5580-1410-44B3-9221-96B381DF9722} = {D222BB0F-28BF-463E-8F86-835BC601F439}
+		{75039EAD-0A4A-4E7C-87B1-695FCE9097FF} = {AE438B59-88FB-4A14-83A3-68404A6118DB}
+	EndGlobalSection
+EndGlobal
