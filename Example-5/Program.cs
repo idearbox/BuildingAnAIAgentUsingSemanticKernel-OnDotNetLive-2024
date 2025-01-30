@@ -13,7 +13,6 @@ builder.AddAzureOpenAIChatCompletion(
          model,   // Azure OpenAI Deployment Name
          endpoint,  // Azure OpenAI Endpoint
          key);      // Azure OpenAI Key
-var kernel = builder.Build();
 
 builder.Plugins.AddFromType<GeneralPlugin>();
 
